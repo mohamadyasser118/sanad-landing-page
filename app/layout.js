@@ -41,7 +41,7 @@ export const metadata = {
 // ── Root Layout ───────────────────────────────────────────────────────────────
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" dir="ltr">
+    <html lang="ar" dir="rtl">
       <head>
         {/* Preconnect for Google Fonts performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
