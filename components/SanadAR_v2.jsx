@@ -904,9 +904,8 @@ function Solution() {
     </section>
   );
 }
-
 // ═══════════════════════════════════════════════════════════════════
-//  HOW IT WORKS
+//  HOW IT WORKS (Optimized for Tabs & Performance)
 // ═══════════════════════════════════════════════════════════════════
 function HowItWorks({ onUser, onLawyer }) {
   const [tab, setTab] = useState('users');
@@ -957,16 +956,18 @@ function HowItWorks({ onUser, onLawyer }) {
           ))}
         </div>
 
-        {/* بطاقات الخطوات */}
+        {/* بطاقات الخطوات - تم التعديل هنا */}
         <div className="two-col" style={{ display:'grid', gridTemplateColumns:'repeat(2,1fr)', gap:16 }}>
           {(tab==='users' ? userSteps : lawyerSteps).map((s,i)=>(
-            <div key={i+tab} className="reveal" style={{
-              background:'rgba(255,255,255,.04)', border:'1px solid rgba(212,206,196,.07)',
-              borderRadius:16, padding:'28px 24px', position:'relative', overflow:'hidden',
-              transition:'var(--t)',
-            }}
-              onMouseEnter={e=>{ e.currentTarget.style.background='rgba(255,255,255,.07)'; e.currentTarget.style.transform='translateY(-3px)'; e.currentTarget.style.borderColor='rgba(240,166,90,.22)'; }}
-              onMouseLeave={e=>{ e.currentTarget.style.background='rgba(255,255,255,.04)'; e.currentTarget.style.transform='none'; e.currentTarget.style.borderColor='rgba(212,206,196,.07)'; }}
+            <div 
+              key={i+tab} 
+              className="how-it-card" 
+              style={{
+                background:'rgba(255,255,255,.04)', border:'1px solid rgba(212,206,196,.07)',
+                borderRadius:16, padding:'28px 24px', position:'relative', overflow:'hidden',
+                // تفعيل الأنيميشن بناءً على الـ CSS Keyframes الموجودة في ملفك، مع تأخير متسلسل
+                animation: `fadeUp 0.5s ${i * 0.1}s ease both`
+              }}
             >
               <div style={{ position:'absolute', top:-6, left:10,
                 fontFamily:'var(--font-mono)', fontSize:'4.5rem', fontWeight:700,
