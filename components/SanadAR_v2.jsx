@@ -1128,43 +1128,45 @@ function Features() {
 }
 
 // ═══════════════════════════════════════════════════════════════════
-//  TRUST
+//  TRUST (Optimized)
 // ═══════════════════════════════════════════════════════════════════
 function Trust() {
   const cards = [
     { icon:'🏛️', title:'توثيق من النقابة',      desc:'كل بيانات القيد تُراجَع يدويًا قبل تفعيل أي حساب. لا استثناءات، لا ادعاءات غير موثّقة.' },
     { icon:'💳', title:'حماية كاملة للمدفوعات', desc:'العملاء يدفعون قبل الجلسات. الأتعاب تُحوَّل تلقائيًا بعد الاكتمال. لا نقد ولا التباس.' },
-    { icon:'🔐', title:'سرية مضمونة',            desc:'كل الاتصالات والمستندات مشفّرة. شؤونك القانونية لا يطّلع عليها إلا المحامي الذي اخترته.' },
+    { icon:'🔐', title:'سرية مضمونة',             desc:'كل الاتصالات والمستندات مشفّرة. شؤونك القانونية لا يطّلع عليها إلا المحامي الذي اخترته.' },
     { icon:'⚖️', title:'تقييمات حقيقية فقط',    desc:'التقييمات تتطلب استشارة مكتملة مدفوعة. لا آراء مجهولة. لا تلاعب. سمعة حقيقية يُبنى عليها.' },
     { icon:'🛡️', title:'حماية بيانات شخصية',    desc:'سَنَد ملتزمة بقانون حماية البيانات الشخصية المصري رقم 151 لسنة 2020. بياناتك ملك لك وحدك.' },
     { icon:'📋', title:'شروط شفافة دائمًا',     desc:'لا رسوم خفية. لا عقود مُقيِّدة. أسعار واضحة للعملاء وعمولات واضحة للمحامين — كل شيء مكتوب.' },
   ];
+
   return (
     <section id="trust" style={{ padding:'96px 0', background:C.ink, position:'relative', overflow:'hidden', direction:'rtl' }}>
+      {/* Background Glow */}
       <div style={{ position:'absolute', bottom:-90, left:-90, width:460, height:460,
-        borderRadius:'50%', background:`radial-gradient(circle, ${C.rust}09, transparent 70%)` }}/>
+        borderRadius:'50%', background:`radial-gradient(circle, ${C.rust}09, transparent 70%)`, pointerEvents:'none' }}/>
+      
       <div style={{ maxWidth:'var(--max)', margin:'0 auto', padding:'0 24px', position:'relative', zIndex:1 }}>
-        <div className="reveal" style={{ textAlign:'center', marginBottom:14 }}>
+        <div style={{ textAlign:'center', marginBottom:14 }}>
           <Tag variant="dark">لماذا تثق بسَنَد؟</Tag>
         </div>
-        <h2 className="reveal d1" style={{
+        
+        <h2 style={{
           fontFamily:'var(--font-display)', fontSize:'clamp(1.85rem,3.5vw,2.8rem)',
           fontWeight:700, color:C.sand, textAlign:'center', lineHeight:1.18, marginBottom:16,
         }}>ثقة مبنية على <em style={{fontStyle:'italic',color:C.amber}}>الأفعال لا الكلام</em></h2>
-        <p className="reveal d2" style={{
+        
+        <p style={{
           fontSize:'1.03rem', color:C.stone, textAlign:'center',
           maxWidth:540, margin:'0 auto 60px', lineHeight:1.8,
         }}>الثقة لا تُدّعى، تُكتسب من خلال البنية والشفافية والاتساق. هذا كيف تكسبها سَنَد.</p>
 
-        <div className="three-col" style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:18, marginBottom:44 }}>
+        {/* الكروت باستخدام CSS Classes بدلاً من JS Hovers */}
+        <div className="three-col" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(280px, 1fr))', gap:18, marginBottom:44 }}>
           {cards.map((c,i)=>(
-            <div key={i} className={`reveal d${(i%3)+1}`} style={{
-              background:'rgba(255,255,255,.04)', border:'1px solid rgba(212,206,196,.07)',
-              borderRadius:16, padding:'28px 22px', textAlign:'center', transition:'var(--t)',
-            }}
-              onMouseEnter={e=>{ e.currentTarget.style.background='rgba(255,255,255,.07)'; e.currentTarget.style.borderColor='rgba(240,166,90,.22)'; e.currentTarget.style.transform='translateY(-3px)'; }}
-              onMouseLeave={e=>{ e.currentTarget.style.background='rgba(255,255,255,.04)'; e.currentTarget.style.borderColor='rgba(212,206,196,.07)'; e.currentTarget.style.transform='none'; }}
-            >
+            <div key={i} className="trust-card" style={{
+              borderRadius:16, padding:'28px 22px', textAlign:'center',
+            }}>
               <div style={{ fontSize:'1.9rem', marginBottom:14 }}>{c.icon}</div>
               <h4 style={{ fontFamily:'var(--font-display)', fontSize:'1rem', fontWeight:700,
                            color:C.sand, marginBottom:9 }}>{c.title}</h4>
@@ -1174,15 +1176,14 @@ function Trust() {
         </div>
 
         {/* إخلاء المسؤولية */}
-        <div className="reveal" style={{
+        <div style={{
           padding:'24px 32px', background:'rgba(255,255,255,.025)',
           border:'1px solid rgba(212,206,196,.055)', borderRadius:14, textAlign:'center',
         }}>
           <p style={{ fontSize:'.88rem', color:'rgba(212,206,196,.38)', lineHeight:1.8 }}>
             <strong style={{color:'rgba(212,206,196,.6)'}}>تنبيه مهم:</strong>{' '}
             سَنَد منصة تكنولوجية لتيسير التواصل بين العملاء والمحامين المستقلين.
-            سَنَد{' '}<strong style={{color:'rgba(212,206,196,.6)'}}>ليست مكتب محاماة</strong>{' '}
-            ولا تقدّم استشارات قانونية بأي شكل. كل الخدمات القانونية تقع على عاتق المحامي المرخّص الذي تختاره وحده.
+            سَنَد <strong style={{color:'rgba(212,206,196,.6)'}}>ليست مكتب محاماة</strong> ولا تقدّم استشارات قانونية بأي شكل.
           </p>
         </div>
       </div>
