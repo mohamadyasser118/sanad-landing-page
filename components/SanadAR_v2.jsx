@@ -3814,7 +3814,7 @@ export default function SanadAR() {
         open={lawyerOpen}
         onClose={() => setLawyerOpen(false)}
         title="سجّل كمحامٍ مؤسس"
-        subtitle="أول 100 محامٍ يحصلون على عمولة 10% فقط للأشهر الثلاثة الأولى، وشارة المؤسس، وأولوية الظهور في نتائج البحث."
+        subtitle="أول 40 محامٍ يحصلون على عمولة 5% فقط للأشهر الثلاثة الأولى، وشارة المؤسس، وأولوية الظهور في نتائج البحث."
       >
         <LawyerForm onClose={() => setLawyerOpen(false)} />
       </Modal>
