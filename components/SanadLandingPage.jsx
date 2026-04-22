@@ -334,7 +334,7 @@ function LawyerRegisterForm({ onClose }) {
   if (submitted) return (
     <SuccessState
       title="Application Received! ⚖️"
-      message="We'll review your details and reach out within 48 hours. As a Founding Lawyer, you'll get 10% commission for 3 months, a verified badge, and priority placement in client search results."
+      message="We'll review your details and reach out within 48 hours. As a Founding Lawyer, you'll get 5% commission for 3 months, a verified badge, and priority placement in client search results."
       onClose={onClose}
     />
   );
@@ -638,7 +638,7 @@ function Hero({ onOpenUser, onOpenLawyer }) {
             display:'flex',gap:28,flexWrap:'wrap',marginTop:52,
             animation:'fadeUp .9s .65s ease both',
           }}>
-            {[['100','Founding Lawyer Spots'],['10%','Commission — 3 Months'],['24h','Verified Profiles']].map(([big,small]) => (
+            {[['40','Founding Lawyer Spots'],['5%','Commission — 3 Months'],['24h','Verified Profiles']].map(([big,small]) => (
               <div key={big} style={{ display:'flex',alignItems:'center',gap:10 }}>
                 <span style={{fontFamily:'var(--font-mono)',fontSize:'1.25rem',fontWeight:700,color:C.amber}}>{big}</span>
                 <span style={{fontSize:'.82rem',color:'rgba(212,206,196,.45)',lineHeight:1.3}}>{small}</span>
@@ -1153,7 +1153,7 @@ function EarlyAccess({ onOpenUser, onOpenLawyer }) {
         <div className="reveal d3" style={{ display:'grid',gridTemplateColumns:'1fr 1fr',gap:16,marginBottom:44,textAlign:'left' }}>
           {[
             { label:'For Users', title:'Join Early. Get More Attention.', desc:'Join the waitlist and book your first consultation with no Sanad service fee.' },
-            { label:'For Lawyers', title:'10% Commission — First 3 Months', desc:'First 100 lawyers get zero commission, a Founding badge, and priority search placement.' },
+            { label:'For Lawyers', title:'5% Commission — First 3 Months', desc:'First 40 lawyers get zero commission, a Founding badge, and priority search placement.' },
           ].map((c,i) => (
             <div key={i} style={{
               background:C.white,borderRadius:C.r,padding:'28px 24px',
@@ -1188,10 +1188,10 @@ function EarlyAccess({ onOpenUser, onOpenLawyer }) {
 function FAQ() {
   const [open, setOpen] = useState(null);
   const faqs = [
-    { q:'Is Sanad free to use?', a:'Registering on Sanad is completely free for both clients and lawyers. Clients pay only for consultations they book — the fee is set by the lawyer and shown upfront before commitment. Lawyers pay a small platform commission only when a consultation is completed. During the founding period, the first 100 lawyers pay 10% commission for 3 months.' },
+    { q:'Is Sanad free to use?', a:'Registering on Sanad is completely free for both clients and lawyers. Clients pay only for consultations they book — the fee is set by the lawyer and shown upfront before commitment. Lawyers pay a small platform commission only when a consultation is completed. During the founding period, the first 40 lawyers pay 5% commission for 3 months.' },
     { q:'How do I choose the right lawyer?', a:'Sanad\'s filtering system lets you narrow by legal specialisation, governorate, consultation price, years of experience, and rating. Every lawyer profile shows Bar Association credentials, academic qualifications, work history, and verified client reviews. You see everything before you book.' },
     { q:'Does Sanad provide legal advice?', a:'No. Sanad does not provide legal advice. We are a technology platform connecting clients with independent, licensed Egyptian lawyers. All legal advice and services are provided exclusively by the lawyer you choose — who carries full professional responsibility for their work.' },
-    { q:'How do lawyers get paid?', a:'Clients pay their consultation fee upfront when booking — through bank card, Fawry, Vodafone Cash, or InstaPay. After the consultation is completed, the fee (minus Sanad\'s commission) is automatically transferred to the lawyer. Founding lawyers pay 0% for 3 months, then a flat 10% thereafter.' },
+    { q:'How do lawyers get paid?', a:'Clients pay their consultation fee upfront when booking — through bank card, Fawry, Vodafone Cash, or InstaPay. After the consultation is completed, the fee (minus Sanad\'s commission) is automatically transferred to the lawyer. Founding lawyers pay 0% for 3 months, then a flat 5% thereafter.' },
     { q:'What happens if my lawyer cancels?', a:'If a lawyer cancels, rejects your booking, or fails to appear, you receive a full automatic refund to your original payment method within 5–10 business days. All no-show incidents are reviewed as part of our quality management process.' },
     { q:'Is my information private?', a:'Yes. All data is encrypted in transit (TLS 1.3) and at rest (AES-256). Your personal phone number is never shared with lawyers. Documents are accessible only to you and your matched lawyer. Sanad complies with Egypt\'s Personal Data Protection Law No. 151 of 2020.' },
     { q:'Can I consult in Arabic?', a:'Absolutely. Sanad is built for the Egyptian market. The full app is available in Arabic (RTL) and English. All lawyers on the platform are Egyptian legal professionals — consultations happen in Arabic unless you and your lawyer agree otherwise.' },
@@ -1441,7 +1441,7 @@ export default function SanadLandingPage() {
         open={lawyerModalOpen}
         onClose={() => setLawyerModalOpen(false)}
         title="Register as a Founding Lawyer"
-        subtitle="First 100 verified lawyers get 10% commission for 3 months, a Founding badge, and priority search placement."
+        subtitle="First 40 verified lawyers get 5% commission for 3 months, a Founding badge, and priority search placement."
       >
         <LawyerRegisterForm onClose={() => setLawyerModalOpen(false)} />
       </Modal>
