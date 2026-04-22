@@ -769,6 +769,7 @@ function UserForm({ onClose }) {
 function LawyerForm({ onClose }) {
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [step, setStep] = useState(1);
   const [form, setForm] = useState({
     firstName: '',
@@ -796,17 +797,44 @@ function LawyerForm({ onClose }) {
   const submit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // ─── استبدل هذا بطلب API حقيقي ────────────────────────
-    // const res = await fetch('/api/lawyers', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(form),
-    // });
-    // if (!res.ok) throw new Error('فشل الإرسال');
-    await new Promise((r) => setTimeout(r, 1600));
-    // ────────────────────────────────────────────────────────
-    setLoading(false);
-    setDone(true);
+    setError('');
+
+    try {
+      const payload = {
+        firstName: form.firstName.trim(),
+        lastName: form.lastName.trim(),
+        phone: form.phone.trim(),
+        email: form.email.trim(),
+        governorate: form.governorate,
+        officeAddress: form.officeAddress.trim() ? form.officeAddress.trim() : null,
+        specialization: form.specialization,
+        yearsExp: form.yearsExp,
+        barGrade: form.barGrade,
+        bio: form.bio.trim(),
+        linkedIn: form.linkedIn.trim() ? form.linkedIn.trim() : null,
+        howHeard: form.howHeard.trim() ? form.howHeard.trim() : null,
+        message: form.message.trim() ? form.message.trim() : null,
+      };
+
+      const res = await fetch('https://sanad.page/api/v1/founding-lawyers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error('فشل إرسال الطلب، حاول مرة أخرى.');
+      }
+
+      setDone(true);
+    } catch (err) {
+      setError(err?.message || 'حدث خطأ غير متوقع أثناء الإرسال.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (done)
@@ -1019,6 +1047,19 @@ function LawyerForm({ onClose }) {
             multiline
             placeholder="شاركنا أي تساؤلات أو أفكار..."
           />
+          {error && (
+            <p
+              style={{
+                fontSize: '.82rem',
+                color: C.rust,
+                marginBottom: 12,
+                fontFamily: 'var(--font-mono)',
+                lineHeight: 1.6,
+              }}
+            >
+              {error}
+            </p>
+          )}
           <div style={{ display: 'flex', gap: 10, marginTop: 10 }}>
             <Btn
               type="button"
